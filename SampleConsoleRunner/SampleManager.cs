@@ -62,6 +62,9 @@ public static class SampleManager
             case Sample.ConsumingMcp:
                 await ConsumingMcpTools.RunSample();
                 break;
+            case Sample.ToolCallingMiddleware:
+                await ToolCallingMiddleware.RunSample();
+                break;
             case Sample.StructuredOutputManual:
                 await StructuredOutput.RunSample();
                 break;
