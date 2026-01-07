@@ -4,7 +4,7 @@ using Samples.SampleUtilities.Agents;
 
 // ReSharper disable ClassNeverInstantiated.Local
 
-namespace Samples.Section7;
+namespace Samples.Section07;
 
 public static class StructuredOutput
 {

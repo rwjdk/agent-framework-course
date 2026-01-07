@@ -1,18 +1,11 @@
-﻿using Azure.AI.OpenAI;
+﻿using System.ClientModel;
+using System.Diagnostics;
+using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using OpenAI.Chat;
-using System;
-using System.ClientModel;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Net;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using Samples.SampleUtilities;
 
-namespace Samples.Section3;
+namespace Samples.Section03;
 
 public static class TokenUsage
 {

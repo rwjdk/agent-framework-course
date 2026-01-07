@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Reflection;
 using Samples.SampleUtilities;
-using Samples.Section7;
+using Samples.Section03;
+using Samples.Section07;
 
 namespace SampleConsoleRunner;
 
@@ -41,7 +42,7 @@ public static class SampleManager
         switch (sample)
         {
             case Sample.TokenUsage:
-                await Samples.Section3.TokenUsage.RunSample();
+                await TokenUsage.RunSample();
                 break;
             case Sample.StructuredOutputManual:
                 await StructuredOutput.MovieSample();
