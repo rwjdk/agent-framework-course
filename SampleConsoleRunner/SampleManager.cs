@@ -48,6 +48,9 @@ public static class SampleManager
             case Sample.NormalVsStreamingResponse:
                 await NormalVsStreamingResponse.RunSample();
                 break;
+            case Sample.Chatloop:
+                await Chatloop.RunSample();
+                break;
             case Sample.StructuredOutputManual:
                 await StructuredOutput.MovieSample();
                 break;
