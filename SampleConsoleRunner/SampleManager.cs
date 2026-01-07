@@ -59,6 +59,9 @@ public static class SampleManager
             case Sample.CreatingTools:
                 await CreatingTools.RunSample();
                 break;
+            case Sample.ConsumingMcp:
+                await ConsumingMcpTools.RunSample();
+                break;
             case Sample.StructuredOutputManual:
                 await StructuredOutput.RunSample();
                 break;
