@@ -3,6 +3,7 @@ using System.Reflection;
 using Samples.SampleUtilities;
 using Samples.Section03;
 using Samples.Section04;
+using Samples.Section05;
 using Samples.Section07;
 
 namespace SampleConsoleRunner;
@@ -40,6 +41,7 @@ public static class SampleManager
 
         Console.Clear();
 
+        Output.Gray("Running sample: " + sample);
         switch (sample)
         {
             case Sample.TokenUsage:
@@ -54,11 +56,11 @@ public static class SampleManager
             case Sample.Instructions:
                 await Instructions.RunSample();
                 break;
-            case Sample.StructuredOutputManual:
-                await StructuredOutput.MovieSample();
-                break;
             case Sample.CreatingTools:
-                Console.WriteLine("todo"); //todo
+                await CreatingTools.RunSample();
+                break;
+            case Sample.StructuredOutputManual:
+                await StructuredOutput.RunSample();
                 break;
             case Sample.Interactive:
             default:

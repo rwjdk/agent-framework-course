@@ -10,7 +10,7 @@ namespace Samples.Section07;
 
 public static class StructuredOutput
 {
-    public static async Task MovieSample()
+    public static async Task RunSample()
     {
         //Create Raw Connection
         (string endpoint, string apiKey) = SecretManager.GetAzureOpenAIApiKeyBasedCredentials();
