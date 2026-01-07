@@ -1,8 +1,10 @@
-﻿using Microsoft.Agents.AI;
-using Samples.SampleUtilities;
-using Samples.SampleUtilities.Agents;
+﻿// ReSharper disable ClassNeverInstantiated.Local
 
-// ReSharper disable ClassNeverInstantiated.Local
+using Azure.AI.OpenAI;
+using Microsoft.Agents.AI;
+using Samples.SampleUtilities;
+using System.ClientModel;
+using OpenAI.Chat;
 
 namespace Samples.Section07;
 
@@ -10,7 +12,12 @@ public static class StructuredOutput
 {
     public static async Task MovieSample()
     {
-        ChatClientAgent agent = AgentHelper.GetAgent("You are a Movie Expert");
+        //Create Raw Connection
+        (string endpoint, string apiKey) = SecretManager.GetAzureOpenAIApiKeyBasedCredentials();
+        AzureOpenAIClient client = new AzureOpenAIClient(new Uri(endpoint), new ApiKeyCredential(apiKey));
+
+        //Create Agent
+        ChatClientAgent agent = client.GetChatClient("gpt-4.1-nano").CreateAIAgent(instructions: "You are a Movie Expert");
 
         string question = "List the top 3 best movies according to IMDB";
 

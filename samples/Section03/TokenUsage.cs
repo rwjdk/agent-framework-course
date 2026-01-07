@@ -11,6 +11,7 @@ public static class TokenUsage
 {
     public static async Task RunSample()
     {
+        //Create Raw Connection
         (string endpoint, string apiKey) = SecretManager.GetAzureOpenAIApiKeyBasedCredentials();
         AzureOpenAIClient client = new AzureOpenAIClient(new Uri(endpoint), new ApiKeyCredential(apiKey));
 
@@ -24,6 +25,7 @@ public static class TokenUsage
         Output.Gray($"Testing Model: {model} on Azure OpenAI");
         Console.WriteLine();
 
+        //Create Agent
         ChatClientAgent agent = client.GetChatClient(model).CreateAIAgent();
 
         string? message = "What is the capital of France?";

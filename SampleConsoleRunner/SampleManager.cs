@@ -2,6 +2,7 @@
 using System.Reflection;
 using Samples.SampleUtilities;
 using Samples.Section03;
+using Samples.Section04;
 using Samples.Section07;
 
 namespace SampleConsoleRunner;
@@ -44,6 +45,9 @@ public static class SampleManager
             case Sample.TokenUsage:
                 await TokenUsage.RunSample();
                 break;
+            case Sample.NormalVsStreamingResponse:
+                await NormalVsStreamingResponse.RunSample();
+                break;
             case Sample.StructuredOutputManual:
                 await StructuredOutput.MovieSample();
                 break;
@@ -69,7 +73,7 @@ public enum Sample
     TokenUsage = 300,
 
     [SampleDetails("Streaming Response", SampleSection.Section4)]
-    Streaming = 400,
+    NormalVsStreamingResponse = 400,
 
     [SampleDetails("Chat-loop (AgentThread)", SampleSection.Section4)]
     Chatloop = 401,
