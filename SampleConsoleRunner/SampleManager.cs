@@ -51,6 +51,9 @@ public static class SampleManager
             case Sample.Chatloop:
                 await Chatloop.RunSample();
                 break;
+            case Sample.Instructions:
+                await Instructions.RunSample();
+                break;
             case Sample.StructuredOutputManual:
                 await StructuredOutput.MovieSample();
                 break;
