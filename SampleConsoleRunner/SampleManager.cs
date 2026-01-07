@@ -10,6 +10,9 @@ public static class SampleManager
 {
     public static async Task RunSample(Sample sample)
     {
+        Console.Clear();
+        Console.ResetColor();
+
         if (sample == Sample.Interactive)
         {
             //Choose sample via interactivity
