@@ -19,7 +19,7 @@ public static class CodeInterpreter
 #pragma warning disable OPENAI001
         //Create Raw Connection
         string apiKey = SecretManager.GetOpenAIApiKey();
-        OpenAIClient client = new OpenAIClient(apiKey);
+        OpenAIClient client = new OpenAIClient(apiKey); //Note: This only work with OpenAI and not Azure OpenAI yet
 
         //Create Agent
         ChatClientAgent agent = client
