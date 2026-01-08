@@ -71,6 +71,9 @@ public static class SampleManager
             case Sample.WebSearch:
                 await WebSearch.RunSample();
                 break;
+            case Sample.CodeInterpreter:
+                await CodeInterpreter.RunSample();
+                break;
             case Sample.StructuredOutputManual:
                 await StructuredOutput.RunSample();
                 break;
