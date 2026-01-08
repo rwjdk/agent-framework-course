@@ -65,6 +65,9 @@ public static class SampleManager
             case Sample.ToolCallingMiddleware:
                 await ToolCallingMiddleware.RunSample();
                 break;
+            case Sample.OtherAgentsAsTools:
+                await OtherAgentsAsTools.RunSample();
+                break;
             case Sample.StructuredOutputManual:
                 await StructuredOutput.RunSample();
                 break;
