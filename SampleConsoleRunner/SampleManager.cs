@@ -68,6 +68,9 @@ public static class SampleManager
             case Sample.OtherAgentsAsTools:
                 await OtherAgentsAsTools.RunSample();
                 break;
+            case Sample.WebSearch:
+                await WebSearch.RunSample();
+                break;
             case Sample.StructuredOutputManual:
                 await StructuredOutput.RunSample();
                 break;
