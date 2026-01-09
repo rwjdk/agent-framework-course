@@ -5,6 +5,7 @@ using Samples.Section03;
 using Samples.Section04;
 using Samples.Section05;
 using Samples.Section06;
+using Samples.Section07;
 
 namespace SampleConsoleRunner;
 
@@ -86,6 +87,9 @@ public static class SampleManager
             case Sample.StructuredOutputLimitations:
                 await StructuredOutputLimitations.RunSample();
                 break;
+            case Sample.LifeOfAnLlmCall:
+                await LifeOfAnLlmCall.RunSample();
+                break;
             case Sample.Interactive:
             default:
                 Console.WriteLine("No sample with that number :-(");
@@ -114,34 +118,37 @@ public enum Sample
     Instructions = 402,
 
     [SampleDetails("Creating Tools", SampleSection.Section5)]
-    CreatingTools = 600,
+    CreatingTools = 500,
 
     [SampleDetails("Consuming MCP Servers", SampleSection.Section5)]
-    ConsumingMcp = 601,
+    ConsumingMcp = 501,
 
     [SampleDetails("CodeInterpreter Tool", SampleSection.Section5)]
-    CodeInterpreter = 602,
+    CodeInterpreter = 502,
 
     [SampleDetails("Web Search Tool", SampleSection.Section5)]
-    WebSearch = 603,
+    WebSearch = 503,
 
     [SampleDetails("Other Agents as Tools", SampleSection.Section5)]
-    OtherAgentsAsTools = 604,
+    OtherAgentsAsTools = 504,
 
     [SampleDetails("Tool Calling Middleware", SampleSection.Section5)]
-    ToolCallingMiddleware = 605,
+    ToolCallingMiddleware = 505,
 
     [SampleDetails("Structured Output", SampleSection.Section6)]
-    StructuredOutput = 700,
+    StructuredOutput = 600,
 
     [SampleDetails("Structured Output (More manual way)", SampleSection.Section6)]
-    StructuredOutputManualWay = 701,
+    StructuredOutputManualWay = 601,
 
     [SampleDetails("Structured Output (Instructions)", SampleSection.Section6)]
-    StructuredOutputInstructions = 702,
+    StructuredOutputInstructions = 602,
 
     [SampleDetails("Structured Output (Limitations)", SampleSection.Section6)]
-    StructuredOutputLimitations = 703
+    StructuredOutputLimitations = 603,
+
+    [SampleDetails("The Life of an LLM Call", SampleSection.Section7)]
+    LifeOfAnLlmCall = 700
 }
 
 public enum SampleSection
