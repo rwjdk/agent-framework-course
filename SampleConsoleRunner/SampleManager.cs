@@ -83,6 +83,9 @@ public static class SampleManager
             case Sample.StructuredOutputInstructions:
                 await StructuredOutputInstructions.RunSample();
                 break;
+            case Sample.StructuredOutputLimitations:
+                await StructuredOutputLimitations.RunSample();
+                break;
             case Sample.Interactive:
             default:
                 Console.WriteLine("No sample with that number :-(");
@@ -136,6 +139,9 @@ public enum Sample
 
     [SampleDetails("Structured Output (Instructions)", SampleSection.Section6)]
     StructuredOutputInstructions = 702,
+
+    [SampleDetails("Structured Output (Limitations)", SampleSection.Section6)]
+    StructuredOutputLimitations = 703
 }
 
 public enum SampleSection
