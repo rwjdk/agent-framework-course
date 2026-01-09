@@ -80,6 +80,9 @@ public static class SampleManager
             case Sample.StructuredOutputManualWay:
                 await StructuredOutputTheManualWay.RunSample();
                 break;
+            case Sample.StructuredOutputInstructions:
+                await StructuredOutputInstructions.RunSample();
+                break;
             case Sample.Interactive:
             default:
                 Console.WriteLine("No sample with that number :-(");
@@ -130,6 +133,9 @@ public enum Sample
 
     [SampleDetails("Structured Output (More manual way)", SampleSection.Section6)]
     StructuredOutputManualWay = 701,
+
+    [SampleDetails("Structured Output (Instructions)", SampleSection.Section6)]
+    StructuredOutputInstructions = 702,
 }
 
 public enum SampleSection
