@@ -38,8 +38,7 @@ public static class Chatloop
                 Output.Gray($"Tokens - In: {response.Usage.InputTokenCount} - Out: {response.Usage.OutputTokenCount}");
             }
 
-            ChatClientAgentThread clientAgentThread = (ChatClientAgentThread)thread;
-            List<ChatMessage> messagesInThread = (await clientAgentThread.MessageStore!.GetMessagesAsync()).ToList();
+            IList<ChatMessage>? messagesInThread = thread.GetService<IList<ChatMessage>>();
 
             Output.Separator();
         }
