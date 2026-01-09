@@ -2,9 +2,14 @@
 
 using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
+using Microsoft.Extensions.AI;
+using OpenAI.Chat;
 using Samples.SampleUtilities;
 using System.ClientModel;
-using OpenAI.Chat;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Text.Json.Serialization.Metadata;
+using ChatResponseFormat = Microsoft.Extensions.AI.ChatResponseFormat;
 
 namespace Samples.Section06;
 
@@ -17,18 +22,36 @@ public static class StructuredOutputTheManualWay
         AzureOpenAIClient client = new AzureOpenAIClient(new Uri(endpoint), new ApiKeyCredential(apiKey));
 
         //Create Agent
-        ChatClientAgent agent = client
+        AIAgent agent = client
             .GetChatClient("gpt-4.1-nano")
-            .CreateAIAgent(instructions: "You are a Movie Expert");
+            .CreateAIAgent(instructions: "You are a Movie Expert")
+            .AsBuilder()
+            //middleware goes here
+            .Build();
 
         string question = "List the top 3 best movies according to IMDB";
 
+        JsonSerializerOptions jsonSerializerOptions = new()
+        {
+            PropertyNameCaseInsensitive = true,
+            TypeInfoResolver = new DefaultJsonTypeInfoResolver(),
+            Converters = { new JsonStringEnumConverter() }
+        };
+
+        ChatResponseFormatJson chatResponseFormatJson = ChatResponseFormat.ForJsonSchema<MovieResult>(jsonSerializerOptions);
+
         Output.Title("Structured Output Call");
-        ChatClientAgentRunResponse<MovieResult> response = await agent.RunAsync<MovieResult>(question);
+        AgentRunResponse response = await agent.RunAsync(question, options: new ChatClientAgentRunOptions
+        {
+            ChatOptions = new ChatOptions
+            {
+                ResponseFormat = chatResponseFormatJson
+            }
+        });
 
         Output.Gray("response.Result = .NET Object you can format as you see fit");
 
-        MovieResult movieResult = response.Result;
+        MovieResult movieResult = response.Deserialize<MovieResult>(jsonSerializerOptions);
         foreach (Movie movie in movieResult.Movies)
         {
             Console.WriteLine($"- Title: {movie.Title} - " +

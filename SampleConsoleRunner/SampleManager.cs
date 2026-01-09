@@ -77,6 +77,9 @@ public static class SampleManager
             case Sample.StructuredOutput:
                 await StructuredOutput.RunSample();
                 break;
+            case Sample.StructuredOutputManualWay:
+                await StructuredOutputTheManualWay.RunSample();
+                break;
             case Sample.Interactive:
             default:
                 Console.WriteLine("No sample with that number :-(");
