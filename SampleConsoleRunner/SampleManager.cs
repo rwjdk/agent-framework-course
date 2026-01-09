@@ -4,7 +4,7 @@ using Samples.SampleUtilities;
 using Samples.Section03;
 using Samples.Section04;
 using Samples.Section05;
-using Samples.Section07;
+using Samples.Section06;
 
 namespace SampleConsoleRunner;
 
@@ -35,7 +35,7 @@ public static class SampleManager
             Console.WriteLine("Enter the number of the sample you wish to run");
             Console.Write("> ");
             string input = Console.ReadLine() ?? string.Empty;
-            int number = Convert.ToInt32(input); //todo - better
+            int number = Convert.ToInt32(input);
             sample = (Sample)number;
         }
 
@@ -74,7 +74,7 @@ public static class SampleManager
             case Sample.CodeInterpreter:
                 await CodeInterpreter.RunSample();
                 break;
-            case Sample.StructuredOutputManual:
+            case Sample.StructuredOutput:
                 await StructuredOutput.RunSample();
                 break;
             case Sample.Interactive:
@@ -123,10 +123,10 @@ public enum Sample
     ToolCallingMiddleware = 605,
 
     [SampleDetails("Structured Output", SampleSection.Section6)]
-    StructuredOutputBasic = 700,
+    StructuredOutput = 700,
 
     [SampleDetails("Structured Output (More manual way)", SampleSection.Section6)]
-    StructuredOutputManual = 701,
+    StructuredOutputManualWay = 701,
 }
 
 public enum SampleSection

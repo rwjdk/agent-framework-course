@@ -6,7 +6,7 @@ using Samples.SampleUtilities;
 using System.ClientModel;
 using OpenAI.Chat;
 
-namespace Samples.Section07;
+namespace Samples.Section06;
 
 public static class StructuredOutput
 {
