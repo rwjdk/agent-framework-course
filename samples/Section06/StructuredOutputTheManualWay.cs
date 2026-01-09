@@ -20,7 +20,7 @@ public static class StructuredOutputTheManualWay
         ChatClientAgent agent = client
             .GetChatClient("gpt-4.1-nano")
             .CreateAIAgent(instructions: "You are a Movie Expert");
-        
+
         string question = "List the top 3 best movies according to IMDB";
 
         Output.Title("Structured Output Call");
