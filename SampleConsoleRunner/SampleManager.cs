@@ -97,6 +97,9 @@ public static class SampleManager
             case Sample.IngestDataIntoVectorStore:
                 await IngestDataIntoVectorStore.RunSample();
                 break;
+            case Sample.SearchAndUseVectorStore:
+                await SearchAndUseVectorStore.RunSample();
+                break;
             case Sample.Interactive:
             default:
                 Console.WriteLine("No sample with that number :-(");
@@ -159,7 +162,12 @@ public enum Sample
 
     [SampleDetails("Embedding Data", SampleSection.Section8)]
     EmbeddingData = 800,
-    IngestDataIntoVectorStore
+
+    [SampleDetails("Ingest Data into Vector Store", SampleSection.Section8)]
+    IngestDataIntoVectorStore = 801,
+
+    [SampleDetails("Search and Use Vector Store", SampleSection.Section8)]
+    SearchAndUseVectorStore = 802
 }
 
 public enum SampleSection
