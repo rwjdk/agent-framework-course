@@ -201,18 +201,6 @@ public enum SampleSection
 
     [Description("RAG (Retrieval Augmented Generation)")]
     Section8,
-
-    [Description("Advanced Agent Topics")]
-    Section9,
-
-    [Description("Agent Framework Toolkit")]
-    Section10,
-
-    [Description("Introduction to the Workflow Part of Microsoft Agent Framework")]
-    Section11,
-
-    [Description("Bonus Topics")]
-    Section12,
 }
 
 public class SampleDetailsAttribute(string name, SampleSection section) : Attribute
