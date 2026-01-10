@@ -1,11 +1,12 @@
-﻿using System.ComponentModel;
-using System.Reflection;
-using Samples.SampleUtilities;
+﻿using Samples.SampleUtilities;
 using Samples.Section03;
 using Samples.Section04;
 using Samples.Section05;
 using Samples.Section06;
 using Samples.Section07;
+using Samples.Section08;
+using System.ComponentModel;
+using System.Reflection;
 
 namespace SampleConsoleRunner;
 
@@ -90,6 +91,9 @@ public static class SampleManager
             case Sample.LifeOfAnLlmCall:
                 await LifeOfAnLlmCall.RunSample();
                 break;
+            case Sample.EmbeddingData:
+                await EmbeddingData.RunSample();
+                break;
             case Sample.Interactive:
             default:
                 Console.WriteLine("No sample with that number :-(");
@@ -148,7 +152,10 @@ public enum Sample
     StructuredOutputLimitations = 603,
 
     [SampleDetails("The Life of an LLM Call", SampleSection.Section7)]
-    LifeOfAnLlmCall = 700
+    LifeOfAnLlmCall = 700,
+
+    [SampleDetails("Embedding Data", SampleSection.Section8)]
+    EmbeddingData = 800
 }
 
 public enum SampleSection

@@ -49,7 +49,7 @@ public static class LifeOfAnLlmCall
         return "It is Sunny and 19 degrees today";
     }
 
-    class CustomClientHttpHandler() : HttpClientHandler
+    class CustomClientHttpHandler : HttpClientHandler
     {
         protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
