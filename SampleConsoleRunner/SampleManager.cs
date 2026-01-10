@@ -94,6 +94,9 @@ public static class SampleManager
             case Sample.EmbeddingData:
                 await EmbeddingData.RunSample();
                 break;
+            case Sample.IngestDataIntoVectorStore:
+                await IngestDataIntoVectorStore.RunSample();
+                break;
             case Sample.Interactive:
             default:
                 Console.WriteLine("No sample with that number :-(");
@@ -155,7 +158,8 @@ public enum Sample
     LifeOfAnLlmCall = 700,
 
     [SampleDetails("Embedding Data", SampleSection.Section8)]
-    EmbeddingData = 800
+    EmbeddingData = 800,
+    IngestDataIntoVectorStore
 }
 
 public enum SampleSection

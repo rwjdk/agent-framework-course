@@ -84,7 +84,6 @@ public static class EmbeddingData
         ~10–12 pages of text(depending on density)
         */
 
-
         //Let's test vector similarity (normally the job of a Vector-store, but we can do it in code as a sample)
         float howCloseWifiDataAndBookDataAreToEachOther = VectorMatch.MatchScore(vectorOfWifiData.Vector, vectorOfBook.Vector);
 
