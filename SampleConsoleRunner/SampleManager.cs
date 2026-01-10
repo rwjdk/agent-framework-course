@@ -100,6 +100,9 @@ public static class SampleManager
             case Sample.SearchAndUseVectorStore:
                 await SearchAndUseVectorStore.RunSample();
                 break;
+            case Sample.SearchAsATool:
+                await SearchAsATool.RunSample();
+                break;
             case Sample.Interactive:
             default:
                 Console.WriteLine("No sample with that number :-(");
@@ -167,7 +170,10 @@ public enum Sample
     IngestDataIntoVectorStore = 801,
 
     [SampleDetails("Search and Use Vector Store", SampleSection.Section8)]
-    SearchAndUseVectorStore = 802
+    SearchAndUseVectorStore = 802,
+
+    [SampleDetails("Search as a Tool", SampleSection.Section8)]
+    SearchAsATool = 803
 }
 
 public enum SampleSection
