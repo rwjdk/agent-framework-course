@@ -24,21 +24,21 @@ public static class CodeInterpreter
         //Create Agent
         ChatClientAgent agent = client
             .GetResponsesClient("gpt-5-nano")
-            .CreateAIAgent(
+            .AsAIAgent(
                 tools:
                 [
                     new HostedCodeInterpreterTool()
                 ],
                 instructions: "You can make charts using you 'code_interpreter' tool");
 
-        AgentThread thread = agent.GetNewThread();
+        AgentThread thread = await agent.GetNewThreadAsync();;
 
         Console.OutputEncoding = Encoding.UTF8;
         while (true)
         {
             Console.Write("> ");
             string input = Console.ReadLine() ?? "";
-            AgentRunResponse response = await agent.RunAsync(input, thread);
+            AgentResponse response = await agent.RunAsync(input, thread);
             {
                 Console.WriteLine(response);
                 foreach (ChatMessage message in response.Messages)

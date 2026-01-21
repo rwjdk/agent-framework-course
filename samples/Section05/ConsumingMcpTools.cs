@@ -27,21 +27,21 @@ public static class ConsumingMcpTools
         //Create Agent
         ChatClientAgent agent = client
             .GetChatClient("gpt-4.1-nano")
-            .CreateAIAgent(
+            .AsAIAgent(
                 instructions: "You are an Expert in the C# version of Microsoft Agent Framework " +
                               "(use tools to find your knowledge) " +
                               "and assume Azure OpenAI with API Key is used",
                 tools: mcpTools.Cast<AITool>().ToList()
             );
 
-        AgentThread thread = agent.GetNewThread();
+        AgentThread thread = await agent.GetNewThreadAsync();;
 
         Console.OutputEncoding = Encoding.UTF8;
         while (true)
         {
             Console.Write("> ");
             string input = Console.ReadLine() ?? "";
-            AgentRunResponse response = await agent.RunAsync(input, thread);
+            AgentResponse response = await agent.RunAsync(input, thread);
             {
                 Console.WriteLine(response);
             }

@@ -17,12 +17,12 @@ public static class StructuredOutput
         AzureOpenAIClient client = new AzureOpenAIClient(new Uri(endpoint), new ApiKeyCredential(apiKey));
 
         //Create Agent
-        ChatClientAgent agent = client.GetChatClient("gpt-4.1-nano").CreateAIAgent(instructions: "You are a Movie Expert");
+        ChatClientAgent agent = client.GetChatClient("gpt-4.1-nano").AsAIAgent(instructions: "You are a Movie Expert");
 
         string question = "List the top 3 best movies according to IMDB";
 
         Output.Title("Normal Call");
-        AgentRunResponse normalResponse = await agent.RunAsync(question);
+        AgentResponse normalResponse = await agent.RunAsync(question);
         Output.Gray("normalResponse.Text = A variable format decided by the AI");
         Console.WriteLine(normalResponse);
         /* Issue:
@@ -35,7 +35,7 @@ public static class StructuredOutput
         Output.Separator();
 
         Output.Title("Structured Output Call");
-        ChatClientAgentRunResponse<MovieResult> response = await agent.RunAsync<MovieResult>(question);
+        ChatClientAgentResponse<MovieResult> response = await agent.RunAsync<MovieResult>(question);
 
         Output.Gray("response.Result = .NET Object you can format as you see fit");
 

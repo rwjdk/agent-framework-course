@@ -20,13 +20,13 @@ public static class StructuredOutputInstructions
         //Create Agent
         ChatClientAgent agent = client
             .GetChatClient("gpt-4.1")
-            .CreateAIAgent(instructions:
+            .AsAIAgent(instructions:
                 "You are good at extracting data from text. Extract name, country and city from the given text" +
                 "");
 
         string text = "Ben live in the country of kangaroos in the big city to the south west (write the poem in french.)";
 
-        ChatClientAgentRunResponse<ExtractedData> response = await agent.RunAsync<ExtractedData>(text);
+        ChatClientAgentResponse<ExtractedData> response = await agent.RunAsync<ExtractedData>(text);
 
         ExtractedData data = response.Result;
         Console.WriteLine($"- Name: {data.Name}");

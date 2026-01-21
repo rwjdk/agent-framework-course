@@ -24,7 +24,7 @@ public static class StructuredOutputTheManualWay
         //Create Agent
         AIAgent agent = client
             .GetChatClient("gpt-4.1-nano")
-            .CreateAIAgent(instructions: "You are a Movie Expert")
+            .AsAIAgent(instructions: "You are a Movie Expert")
             .AsBuilder()
             //middleware goes here
             .Build();
@@ -41,7 +41,7 @@ public static class StructuredOutputTheManualWay
         ChatResponseFormatJson chatResponseFormatJson = ChatResponseFormat.ForJsonSchema<MovieResult>(jsonSerializerOptions);
 
         Output.Title("Structured Output Call");
-        AgentRunResponse response = await agent.RunAsync(question, options: new ChatClientAgentRunOptions
+        AgentResponse response = await agent.RunAsync(question, options: new ChatClientAgentRunOptions
         {
             ChatOptions = new ChatOptions
             {

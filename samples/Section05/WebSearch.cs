@@ -22,7 +22,7 @@ public static class WebSearch
         ChatClientAgent agent = client
             .GetResponsesClient("gpt-4.1-nano")
 #pragma warning restore OPENAI001
-            .CreateAIAgent(
+            .AsAIAgent(
                 tools:
                 [
                     AIFunctionFactory.Create(GetDateTimeUtc),
@@ -31,14 +31,14 @@ public static class WebSearch
                 ],
                 instructions: "You are a Space news Agent (Always in include today's date at the top of your answers)");
 
-        AgentThread thread = agent.GetNewThread();
+        AgentThread thread = await agent.GetNewThreadAsync();;
 
         Console.OutputEncoding = Encoding.UTF8;
         while (true)
         {
             Console.Write("> ");
             string input = Console.ReadLine() ?? "";
-            AgentRunResponse response = await agent.RunAsync(input, thread);
+            AgentResponse response = await agent.RunAsync(input, thread);
             {
                 Console.WriteLine(response);
             }

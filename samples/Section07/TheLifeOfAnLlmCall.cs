@@ -27,12 +27,12 @@ public static class LifeOfAnLlmCall
 
         ChatClientAgent agent = client
             .GetChatClient("gpt-5")
-            .CreateAIAgent(
+            .AsAIAgent(
                 tools: [AIFunctionFactory.Create(GetWeather)],
                 instructions: "Speak like a pirate!"
             );
 
-        ChatClientAgentRunResponse<WeatherResponse> response = await agent.RunAsync<WeatherResponse>("What is the Weather like in Paris?");
+        ChatClientAgentResponse<WeatherResponse> response = await agent.RunAsync<WeatherResponse>("What is the Weather like in Paris?");
         WeatherResponse result = response.Result;
     }
 

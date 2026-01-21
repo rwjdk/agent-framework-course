@@ -21,7 +21,7 @@ public static class ToolCallingMiddleware
         //Create Agent
         AIAgent agent = client
             .GetChatClient("gpt-4.1-nano")
-            .CreateAIAgent(
+            .AsAIAgent(
                 instructions: "You know people and can change colors of the Console ('change_console_color')",
                 tools:
                 [
@@ -33,14 +33,14 @@ public static class ToolCallingMiddleware
             .Use(Middleware)
             .Build();
 
-        AgentThread thread = agent.GetNewThread();
+        AgentThread thread = await agent.GetNewThreadAsync();
 
         Console.OutputEncoding = Encoding.UTF8;
         while (true)
         {
             Console.Write("> ");
             string input = Console.ReadLine() ?? "";
-            AgentRunResponse response = await agent.RunAsync(input, thread);
+            AgentResponse response = await agent.RunAsync(input, thread);
             {
                 Console.WriteLine(response);
             }

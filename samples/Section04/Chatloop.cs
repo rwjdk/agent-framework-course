@@ -16,22 +16,22 @@ public static class Chatloop
         AzureOpenAIClient client = new AzureOpenAIClient(new Uri(endpoint), new ApiKeyCredential(apiKey));
 
         //Create Agent
-        ChatClientAgent agent = client.GetChatClient("gpt-4.1-nano").CreateAIAgent();
+        ChatClientAgent agent = client.GetChatClient("gpt-4.1-nano").AsAIAgent();
 
-        AgentThread thread = agent.GetNewThread();
+        AgentThread thread = await agent.GetNewThreadAsync();
 
         while (true)
         {
             Console.Write("> ");
             string input = Console.ReadLine() ?? "";
-            List<AgentRunResponseUpdate> updates = [];
-            await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync(input, thread))
+            List<AgentResponseUpdate> updates = [];
+            await foreach (AgentResponseUpdate update in agent.RunStreamingAsync(input, thread))
             {
                 updates.Add(update);
                 Console.Write(update);
             }
 
-            AgentRunResponse response = updates.ToAgentRunResponse();
+            AgentResponse response = updates.ToAgentResponse();
             if (response.Usage != null)
             {
                 Console.WriteLine();

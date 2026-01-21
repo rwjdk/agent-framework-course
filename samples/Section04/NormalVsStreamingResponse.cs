@@ -15,16 +15,16 @@ public static class NormalVsStreamingResponse
         AzureOpenAIClient client = new AzureOpenAIClient(new Uri(endpoint), new ApiKeyCredential(apiKey));
 
         //Create Agent
-        ChatClientAgent agent = client.GetChatClient("gpt-4.1-nano").CreateAIAgent();
+        ChatClientAgent agent = client.GetChatClient("gpt-4.1-nano").AsAIAgent();
 
         Output.Title("Normal Call");
-        AgentRunResponse response = await agent.RunAsync("What is the Capital of France?");
+        AgentResponse response = await agent.RunAsync("What is the Capital of France?");
         Console.WriteLine(response);
 
         Output.Separator();
 
         Output.Title("Streaming Call");
-        await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync("How to make soup?"))
+        await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("How to make soup?"))
         {
             Console.Write(update);
         }
@@ -32,14 +32,14 @@ public static class NormalVsStreamingResponse
         Output.Separator();
 
         Output.Title("Streaming Call (gathering all updates to a response at the end)");
-        List<AgentRunResponseUpdate> updates = [];
-        await foreach (AgentRunResponseUpdate update in agent.RunStreamingAsync("How to make soup?"))
+        List<AgentResponseUpdate> updates = [];
+        await foreach (AgentResponseUpdate update in agent.RunStreamingAsync("How to make soup?"))
         {
             updates.Add(update);
             Console.Write(update);
         }
 
-        AgentRunResponse collectedResponse = updates.ToAgentRunResponse();
+        AgentResponse collectedResponse = updates.ToAgentResponse();
         //Use to the usage, and other return data...
         Console.WriteLine(collectedResponse.Usage!.OutputTokenCount);
     }

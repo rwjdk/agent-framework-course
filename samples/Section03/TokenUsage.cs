@@ -26,7 +26,7 @@ public static class TokenUsage
         Console.WriteLine();
 
         //Create Agent
-        ChatClientAgent agent = client.GetChatClient(model).CreateAIAgent();
+        ChatClientAgent agent = client.GetChatClient(model).AsAIAgent();
 
         string? message = "What is the capital of France?";
 
@@ -37,7 +37,7 @@ public static class TokenUsage
 
         Console.WriteLine();
 
-        AgentRunResponse response = await agent.RunAsync(message);
+        AgentResponse response = await agent.RunAsync(message);
         long milliseconds = stopwatch.ElapsedMilliseconds;
 
         Output.Green("Output:");

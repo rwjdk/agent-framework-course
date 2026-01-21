@@ -18,13 +18,13 @@ public static class OtherAgentsAsTools
 
         ChatClientAgent astronomyAgent = client
             .GetChatClient("gpt-5.2")
-            .CreateAIAgent(
+            .AsAIAgent(
                 name: "AstronomyAgent",
                 instructions: "You an expert in Astronomy");
 
         AIAgent agent = client
             .GetChatClient("gpt-4.1-nano")
-            .CreateAIAgent(
+            .AsAIAgent(
                 name: "MainAgent",
                 instructions: "Refer all astronomy questions to the 'AstronomyAgent'",
                 tools:
@@ -35,14 +35,14 @@ public static class OtherAgentsAsTools
             .Use(Middleware)
             .Build();
 
-        AgentThread thread = agent.GetNewThread();
+        AgentThread thread = await agent.GetNewThreadAsync();
 
         Console.OutputEncoding = Encoding.UTF8;
         while (true)
         {
             Console.Write("> ");
             string input = Console.ReadLine() ?? "";
-            AgentRunResponse response = await agent.RunAsync(input, thread);
+            AgentResponse response = await agent.RunAsync(input, thread);
             {
                 Console.WriteLine(response);
             }

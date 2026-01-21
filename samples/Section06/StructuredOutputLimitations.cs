@@ -25,10 +25,10 @@ public static class StructuredOutputLimitations
 
         Output.Title("Structured Output Call (Nice way)");
 
-        ChatClientAgent niceWayAgent = client.GetChatClient("gpt-4.1-nano").CreateAIAgent(instructions: "You are a Movie Expert");
+        ChatClientAgent niceWayAgent = client.GetChatClient("gpt-4.1-nano").AsAIAgent(instructions: "You are a Movie Expert");
 
-        ChatClientAgentRunResponse<List<Movie>> clientAgentRunResponse = await niceWayAgent.RunAsync<List<Movie>>(question);
-        List<Movie> movies = clientAgentRunResponse.Result;
+        ChatClientAgentResponse<List<Movie>> clientAgentResponse = await niceWayAgent.RunAsync<List<Movie>>(question);
+        List<Movie> movies = clientAgentResponse.Result;
         foreach (Movie movie in movies)
         {
             Console.WriteLine($"- Title: {movie.Title} - " +
@@ -40,7 +40,7 @@ public static class StructuredOutputLimitations
 
         AIAgent cumbersomeWayAgent = client
             .GetChatClient("gpt-4.1-nano")
-            .CreateAIAgent(instructions: "You are a Movie Expert")
+            .AsAIAgent(instructions: "You are a Movie Expert")
             .AsBuilder()
             //middleware goes here
             .Build();
@@ -58,7 +58,7 @@ public static class StructuredOutputLimitations
 
         Output.Red("NOTE: THE CALL TO THE LLM HERE WILL FAIL, AND THAT IS 'ON PURPOSE' FOR THIS SAMPLE. THE LECTURE ON STRUCTURED OUTPUT LIMITATIONS EXPLAINS WHY");
 
-        AgentRunResponse response = await cumbersomeWayAgent.RunAsync(question, options: new ChatClientAgentRunOptions
+        AgentResponse response = await cumbersomeWayAgent.RunAsync(question, options: new ChatClientAgentRunOptions
         {
             ChatOptions = new ChatOptions
             {

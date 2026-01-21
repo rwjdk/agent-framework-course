@@ -21,7 +21,7 @@ public static class CreatingTools
         //Create Agent
         ChatClientAgent agent = client
             .GetChatClient("gpt-4.1-nano")
-            .CreateAIAgent(
+            .AsAIAgent(
                 instructions: "You know people and can change colors of the Console ('change_console_color')",
                 tools:
                 [
@@ -30,14 +30,14 @@ public static class CreatingTools
                     AIFunctionFactory.Create(ChangeConsoleColor, "change_console_color", "Change the color of the console")
                 ]);
 
-        AgentThread thread = agent.GetNewThread();
+        AgentThread thread = await agent.GetNewThreadAsync();;
 
         Console.OutputEncoding = Encoding.UTF8;
         while (true)
         {
             Console.Write("> ");
             string input = Console.ReadLine() ?? "";
-            AgentRunResponse response = await agent.RunAsync(input, thread);
+            AgentResponse response = await agent.RunAsync(input, thread);
             {
                 Console.WriteLine(response);
             }

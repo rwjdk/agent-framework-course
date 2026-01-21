@@ -19,16 +19,16 @@ public static class Instructions
         //Create Agent
         ChatClientAgent agent = client
             .GetChatClient("gpt-4.1-nano")
-            .CreateAIAgent(instructions: "Speak like a pirate");
+            .AsAIAgent(instructions: "Speak like a pirate");
 
-        AgentThread thread = agent.GetNewThread();
+        AgentThread thread = await agent.GetNewThreadAsync();;
 
         Console.OutputEncoding = Encoding.UTF8;
         while (true)
         {
             Console.Write("> ");
             string input = Console.ReadLine() ?? "";
-            AgentRunResponse response = await agent.RunAsync(input, thread);
+            AgentResponse response = await agent.RunAsync(input, thread);
             {
                 Console.WriteLine(response);
             }

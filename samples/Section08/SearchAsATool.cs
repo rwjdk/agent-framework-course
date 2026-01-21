@@ -42,17 +42,17 @@ public static class SearchAsATool
         //Create Agent
         ChatClientAgent agent = client
             .GetChatClient("gpt-4.1")
-            .CreateAIAgent(
+            .AsAIAgent(
                 instructions: "You are an expert in the companies Internal Knowledge Base (use the 'search_knowledge' tool)",
                 tools: [AIFunctionFactory.Create(searchTool.Search, "search_knowledge")]);
 
-        AgentThread thread = agent.GetNewThread();
+        AgentThread thread = await agent.GetNewThreadAsync();;
 
         while (true)
         {
             Console.Write("> ");
             string input = Console.ReadLine() ?? "";
-            AgentRunResponse response = await agent.RunAsync(input, thread);
+            AgentResponse response = await agent.RunAsync(input, thread);
             {
                 Console.WriteLine(response);
             }
