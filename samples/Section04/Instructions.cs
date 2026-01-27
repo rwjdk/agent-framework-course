@@ -21,14 +21,14 @@ public static class Instructions
             .GetChatClient("gpt-4.1-nano")
             .AsAIAgent(instructions: "Speak like a pirate");
 
-        AgentThread thread = await agent.GetNewThreadAsync();;
+        AgentSession session = await agent.GetNewSessionAsync();;
 
         Console.OutputEncoding = Encoding.UTF8;
         while (true)
         {
             Console.Write("> ");
             string input = Console.ReadLine() ?? "";
-            AgentResponse response = await agent.RunAsync(input, thread);
+            AgentResponse response = await agent.RunAsync(input, session);
             {
                 Console.WriteLine(response);
             }

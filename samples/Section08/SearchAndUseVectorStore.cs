@@ -42,7 +42,7 @@ public static class SearchAndUseVectorStore
             .GetChatClient("gpt-4.1-nano")
             .AsAIAgent(instructions: "You are an expert in the companies Internal Knowledge Base");
 
-        AgentThread thread = await agent.GetNewThreadAsync();;
+        AgentSession session = await agent.GetNewSessionAsync();;
 
         while (true)
         {
@@ -63,7 +63,7 @@ public static class SearchAndUseVectorStore
                 new ChatMessage(ChatRole.User, input)
             ];
 
-            AgentResponse response = await agent.RunAsync(messagesToSend, thread);
+            AgentResponse response = await agent.RunAsync(messagesToSend, session);
             {
                 Output.Yellow("Final Answer after Search + LLM");
                 Console.WriteLine(response);

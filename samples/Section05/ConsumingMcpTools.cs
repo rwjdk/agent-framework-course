@@ -34,14 +34,14 @@ public static class ConsumingMcpTools
                 tools: mcpTools.Cast<AITool>().ToList()
             );
 
-        AgentThread thread = await agent.GetNewThreadAsync();;
+        AgentSession session = await agent.GetNewSessionAsync();;
 
         Console.OutputEncoding = Encoding.UTF8;
         while (true)
         {
             Console.Write("> ");
             string input = Console.ReadLine() ?? "";
-            AgentResponse response = await agent.RunAsync(input, thread);
+            AgentResponse response = await agent.RunAsync(input, session);
             {
                 Console.WriteLine(response);
             }

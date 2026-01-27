@@ -18,14 +18,14 @@ public static class Chatloop
         //Create Agent
         ChatClientAgent agent = client.GetChatClient("gpt-4.1-nano").AsAIAgent();
 
-        AgentThread thread = await agent.GetNewThreadAsync();
+        AgentSession session = await agent.GetNewSessionAsync();
 
         while (true)
         {
             Console.Write("> ");
             string input = Console.ReadLine() ?? "";
             List<AgentResponseUpdate> updates = [];
-            await foreach (AgentResponseUpdate update in agent.RunStreamingAsync(input, thread))
+            await foreach (AgentResponseUpdate update in agent.RunStreamingAsync(input, session))
             {
                 updates.Add(update);
                 Console.Write(update);
@@ -38,7 +38,7 @@ public static class Chatloop
                 Output.Gray($"Tokens - In: {response.Usage.InputTokenCount} - Out: {response.Usage.OutputTokenCount}");
             }
 
-            IList<ChatMessage>? messagesInThread = thread.GetService<IList<ChatMessage>>();
+            IList<ChatMessage>? messagesInThread = session.GetService<IList<ChatMessage>>();
 
             Output.Separator();
         }
