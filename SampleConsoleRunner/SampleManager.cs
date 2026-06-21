@@ -7,6 +7,7 @@ using Samples.Section07;
 using Samples.Section08;
 using System.ComponentModel;
 using System.Reflection;
+using Samples.Section09_17;
 
 namespace SampleConsoleRunner;
 
@@ -97,6 +98,9 @@ public static class SampleManager
             case Sample.SearchAsATool:
                 await SearchAsATool.RunSample();
                 break;
+            case Sample.OfflineOllama:
+                await OfflineOllama.RunSample();
+                break;
             case Sample.Interactive:
             default:
                 Console.WriteLine("No sample with that number :-(");
@@ -161,7 +165,10 @@ public enum Sample
     SearchAndUseVectorStore = 802,
 
     [SampleDetails("Search as a Tool", SampleSection.Section8)]
-    SearchAsATool = 803
+    SearchAsATool = 803,
+
+    [SampleDetails("Offline: Ollama", SampleSection.Section16)]
+    OfflineOllama = 1601
 }
 
 public enum SampleSection
@@ -189,6 +196,9 @@ public enum SampleSection
 
     [Description("RAG (Retrieval Augmented Generation)")]
     Section8,
+
+    [Description("Other Topics")]
+    Section16
 }
 
 public class SampleDetailsAttribute(string name, SampleSection section) : Attribute
