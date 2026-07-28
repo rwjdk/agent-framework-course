@@ -4,7 +4,7 @@ using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using Microsoft.Extensions.VectorData;
-using Microsoft.SemanticKernel.Connectors.SqliteVec;
+using CommunityToolkit.VectorData.SqliteVec;
 using OpenAI.Chat;
 using Samples.SampleUtilities;
 using System.ClientModel;
@@ -29,7 +29,7 @@ public static class SearchAndUseVectorStore
 
         //Define Vector Store
         string connectionString = $"Data Source={Path.GetTempPath()}\\af-course-vector-store.db";
-        VectorStore vectorStore = new Microsoft.SemanticKernel.Connectors.SqliteVec.SqliteVectorStore(connectionString, new SqliteVectorStoreOptions
+        VectorStore vectorStore = new CommunityToolkit.VectorData.SqliteVec.SqliteVectorStore(connectionString, new SqliteVectorStoreOptions
         {
             EmbeddingGenerator = embeddingGenerator
         });
