@@ -10,7 +10,7 @@
   <ItemGroup>
     <PackageReference Include="Azure.AI.OpenAI" Version="2.9.0-beta.1" />
     <PackageReference Include="CommunityToolkit.VectorData.SqliteVec" Version="1.0.1-preview" />
-    <PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.18.0" />
+    <PackageReference Include="Microsoft.Agents.AI.OpenAI" Version="1.19.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="10.0.11" />
     <PackageReference Include="ModelContextProtocol" Version="2.2.0" />
     <PackageReference Include="OllamaSharp" Version="5.4.30" />
