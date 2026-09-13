@@ -1,11 +1,11 @@
 ﻿// ReSharper disable ClassNeverInstantiated.Local
 
-using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
+using OpenAI;
+using OpenAI.Chat;
 using Samples.SampleUtilities;
 using System.ClientModel;
 using System.ComponentModel;
-using OpenAI.Chat;
 
 namespace Samples.Section06;
 
@@ -15,7 +15,10 @@ public static class StructuredOutputInstructions
     {
         //Create Raw Connection
         (string endpoint, string apiKey) = SecretManager.GetAzureOpenAIApiKeyBasedCredentials();
-        AzureOpenAIClient client = new AzureOpenAIClient(new Uri(endpoint), new ApiKeyCredential(apiKey));
+        OpenAIClient client = new OpenAIClient(new ApiKeyCredential(apiKey), new OpenAIClientOptions
+        {
+            Endpoint = new Uri(endpoint + "/openai/v1")
+        });
 
         //Create Agent
         ChatClientAgent agent = client

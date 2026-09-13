@@ -1,10 +1,10 @@
-﻿using Azure.AI.OpenAI;
-using Microsoft.Agents.AI;
+﻿using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using OpenAI.Chat;
 using Samples.SampleUtilities;
 using System.ClientModel;
 using System.Text;
+using OpenAI;
 
 namespace Samples.Section05;
 
@@ -14,7 +14,10 @@ public static class ToolCallingMiddleware
     {
         //Create Raw Connection
         (string endpoint, string apiKey) = SecretManager.GetAzureOpenAIApiKeyBasedCredentials();
-        AzureOpenAIClient client = new AzureOpenAIClient(new Uri(endpoint), new ApiKeyCredential(apiKey));
+        OpenAIClient client = new OpenAIClient(new ApiKeyCredential(apiKey), new OpenAIClientOptions
+        {
+            Endpoint = new Uri(endpoint + "/openai/v1")
+        });
 
         PersonTools personTools = new PersonTools();
 

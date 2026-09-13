@@ -1,7 +1,7 @@
 ﻿using System.ClientModel;
 using System.Diagnostics;
-using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
+using OpenAI;
 using OpenAI.Chat;
 using Samples.SampleUtilities;
 
@@ -13,14 +13,18 @@ public static class TokenUsage
     {
         //Create Raw Connection
         (string endpoint, string apiKey) = SecretManager.GetAzureOpenAIApiKeyBasedCredentials();
-        AzureOpenAIClient client = new AzureOpenAIClient(new Uri(endpoint), new ApiKeyCredential(apiKey));
+
+        OpenAIClient client = new OpenAIClient(new ApiKeyCredential(apiKey), new OpenAIClientOptions
+        {
+            Endpoint = new Uri(endpoint+"/openai/v1")
+        });
 
         await RunByModel(client, "gpt-4.1-nano");
         await RunByModel(client, "gpt-5-nano");
         await RunByModel(client, "gpt-5.2");
     }
 
-    private static async Task RunByModel(AzureOpenAIClient client, string model)
+    private static async Task RunByModel(OpenAIClient client, string model)
     {
         Output.Gray($"Testing Model: {model} on Azure OpenAI");
         Console.WriteLine();

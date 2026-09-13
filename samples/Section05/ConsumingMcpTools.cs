@@ -1,11 +1,11 @@
-﻿using Azure.AI.OpenAI;
-using Microsoft.Agents.AI;
+﻿using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
+using ModelContextProtocol.Client;
+using OpenAI;
 using OpenAI.Chat;
 using Samples.SampleUtilities;
 using System.ClientModel;
 using System.Text;
-using ModelContextProtocol.Client;
 
 namespace Samples.Section05;
 
@@ -15,7 +15,10 @@ public static class ConsumingMcpTools
     {
         //Create Raw Connection
         (string endpoint, string apiKey) = SecretManager.GetAzureOpenAIApiKeyBasedCredentials();
-        AzureOpenAIClient client = new AzureOpenAIClient(new Uri(endpoint), new ApiKeyCredential(apiKey));
+        OpenAIClient client = new OpenAIClient(new ApiKeyCredential(apiKey), new OpenAIClientOptions
+        {
+            Endpoint = new Uri(endpoint + "/openai/v1")
+        });
 
         await using McpClient mcpClient = await McpClient.CreateAsync(new HttpClientTransport(new HttpClientTransportOptions
         {

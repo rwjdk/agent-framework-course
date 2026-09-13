@@ -1,11 +1,11 @@
-﻿using Azure.AI.OpenAI;
-using Microsoft.Agents.AI;
+﻿using Microsoft.Agents.AI;
+using Microsoft.Extensions.AI;
+using OpenAI;
 using OpenAI.Chat;
+using OpenAI.Responses;
 using Samples.SampleUtilities;
 using System.ClientModel;
 using System.Text;
-using Microsoft.Extensions.AI;
-using OpenAI.Responses;
 
 namespace Samples.Section05;
 
@@ -15,7 +15,10 @@ public static class WebSearch
     {
         //Create Raw Connection
         (string endpoint, string apiKey) = SecretManager.GetAzureOpenAIApiKeyBasedCredentials();
-        AzureOpenAIClient client = new AzureOpenAIClient(new Uri(endpoint), new ApiKeyCredential(apiKey));
+        OpenAIClient client = new OpenAIClient(new ApiKeyCredential(apiKey), new OpenAIClientOptions
+        {
+            Endpoint = new Uri(endpoint + "/openai/v1")
+        });
 
         //Create Agent
 #pragma warning disable OPENAI001

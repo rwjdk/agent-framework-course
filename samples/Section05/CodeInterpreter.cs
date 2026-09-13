@@ -1,5 +1,4 @@
-﻿using Azure.AI.OpenAI;
-using Microsoft.Agents.AI;
+﻿using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
 using OpenAI.Chat;
 using OpenAI.Containers;

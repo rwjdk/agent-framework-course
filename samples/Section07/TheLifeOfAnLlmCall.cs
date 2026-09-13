@@ -1,8 +1,8 @@
 ﻿// ReSharper disable ClassNeverInstantiated.Local
 
-using Azure.AI.OpenAI;
 using Microsoft.Agents.AI;
 using Microsoft.Extensions.AI;
+using OpenAI;
 using OpenAI.Chat;
 using Samples.SampleUtilities;
 using System.ClientModel;
@@ -20,9 +20,10 @@ public static class LifeOfAnLlmCall
         using HttpClient httpClient = new HttpClient(handler);
 
         (string endpoint, string apiKey) = SecretManager.GetAzureOpenAIApiKeyBasedCredentials();
-        AzureOpenAIClient client = new(new Uri(endpoint), new ApiKeyCredential(apiKey), new AzureOpenAIClientOptions
+        OpenAIClient client = new OpenAIClient(new ApiKeyCredential(apiKey), new OpenAIClientOptions
         {
-            Transport = new HttpClientPipelineTransport(httpClient)
+            Transport = new HttpClientPipelineTransport(httpClient),
+            Endpoint = new Uri(endpoint + "/openai/v1")
         });
 
         ChatClientAgent agent = client

@@ -1,9 +1,9 @@
 ﻿// ReSharper disable ClassNeverInstantiated.Local
 
-using System.ClientModel;
-using Azure.AI.OpenAI;
 using Microsoft.Extensions.AI;
+using OpenAI;
 using Samples.SampleUtilities;
+using System.ClientModel;
 
 namespace Samples.Section08;
 
@@ -13,7 +13,10 @@ public static class EmbeddingData
     {
         //Create Raw Connection
         (string endpoint, string apiKey) = SecretManager.GetAzureOpenAIApiKeyBasedCredentials();
-        AzureOpenAIClient client = new AzureOpenAIClient(new Uri(endpoint), new ApiKeyCredential(apiKey));
+        OpenAIClient client = new OpenAIClient(new ApiKeyCredential(apiKey), new OpenAIClientOptions
+        {
+            Endpoint = new Uri(endpoint + "/openai/v1")
+        });
 
         IEmbeddingGenerator<string, Embedding<float>> embeddingGenerator = client
             .GetEmbeddingClient("text-embedding-3-small")
